@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Yaki Restaurant</title>
+    <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/css/style.css">
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <div th:insert="fragments/header :: header"></div>
+
+    <div style="text-align: center ; margin-top: 50px" sec:authorize="isAnonymous()">
+        <a class="btn btn-light" th:href="@{/login}">จัดส่งถึงบ้าน</a>
+        <a class="btn btn-light" th:href="@{/signup}">รับสินค้า</a>
+    </div>
+
+    <div class="container">
+        <h1 class="display-6" style = " text-align: center; margin-top: 30px" >
+            Welcome to Yaki Restaurant
+        </h1>
+
+        <p style="margin-top: 30px ; text-align: center ; ">
+
+            <span th:text="${greeting}"> </span>
+
+        </p>
+
+        
+        <p>
+            <img
+                 src="https://scontent.fbkk29-4.fna.fbcdn.net/v/t39.30808-6/368251130_890459089109796_4351684709432347101_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=52f669&_nc_ohc=3z3iZ1-M-b4AX8_DXua&_nc_ht=scontent.fbkk29-4.fna&_nc_e2o=s&oh=00_AfDJw0OzUFYBzsXLqkV0IPNCIbj7otFPj6VakwymP8Xx9A&oe=652495D4" alt="">
+        </p>
+
+        <div id="success-msg" class="alert alert-success"
+             th:if="${confirmOrder}">
+            Your order has been successfully submitted !
+        </div>
+
+        <div id="success-msg" class="alert alert-success"
+             th:if="${confirmOrder}">
+            Your order has been successfully submitted !
+        </div>
+
+        <div sec:authorize="isAuthenticated()">
+            <p>Khun <b><span sec:authentication="name"></span></b></p>
+            <a class="btn btn-primary" th:href="@{/logout}">Logout</a>
+        </div>
+    </div>
+
+</body>
+</html>
